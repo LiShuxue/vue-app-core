@@ -14,6 +14,10 @@ const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
 const devWebpackConfig = merge(baseWebpackConfig, {
+  // 按需加载的话需要配置chunkFilename这样才会生成正确的名字，默认是0.js, 1.js, 即 '[id].js'
+  output: {
+    chunkFilename: '[name].js'
+  },
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
   },
