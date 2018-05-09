@@ -6,6 +6,7 @@ import App from '@/App'
 // webpack 在编译时，会静态地解析代码中的 require.ensure()，同时将模块添加到一个分开的 chunk 当中。这个新的 chunk 会被 webpack 通过 jsonp 来按需加载。
 // require.ensure(dependencies: String[], callback: function(require), chunkName: String)
 const Hello = r => require.ensure([], () => r(require('@/components/HelloWorld')), 'hello')
+const pageA = r => require.ensure([], () => r(require('@/page/pageA')), 'pageA')
 
 Vue.use(Router)
 
@@ -15,7 +16,8 @@ export default new Router({
             path: '/',
             component: App,
             children: [
-                { path: '/hello', component: Hello }
+                { path: '/hello', component: Hello },
+                { path: '/pageA', component: pageA, meta: { keepAlive: true } } // 需要缓存
             ]
         }
     ]
