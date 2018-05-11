@@ -7,9 +7,11 @@
             <div slot="GPU">GTX980Ti</div>
             <div slot="Memory">Kingston 32G</div>
         </computer>
+
         <!-- 通过props从父组件往子组件传递参数，可以传静态内容，也可以通过绑定v-bind:propertyName="..."来传递动态内容。 -->
         <!-- camelCase vs kebab-case。如果在template中，两种写法都可以。但是如果在html中，特性名是大小写不敏感的，所以浏览器会把所有大写字符解释为小写字符 -->
-        <prop-test propA="静态字符串" :propB="msg" :prop-c="msg" propE="success"></prop-test>
+        <!-- 子组件传递到父组件的消息，需要在子组件的上监听，而不是任意一个template上都可以监听到 -->
+        <prop-test propA="静态字符串" :propB="msg" :prop-c="msg" propE="success" @listenToChildEvent="showMsgFromChild"></prop-test>
     </div>
 </template>
 
@@ -25,6 +27,15 @@ export default {
     components: {
         computer,
         propTest
+    },
+    methods: {
+        showMsgFromChild (args) {
+            console.log(args)
+            this.msg = this.msg + 'b'
+            // data中的数据可以直接用this.获得，也可以用this.$data获得
+            console.log(this.$data.msg)
+            console.log(this.msg)
+        }
     }
 }
 </script>

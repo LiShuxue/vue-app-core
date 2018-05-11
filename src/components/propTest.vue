@@ -10,6 +10,10 @@
         <div><p>父组件传递的数据C：{{this.propC}}</p></div>
         <div><p>父组件传递的数据D：{{propD}}</p></div>
         <div><p>父组件传递的数据E：{{propE}}</p></div>
+
+        <!-- 父子通讯，props down, events up。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息 -->
+        <!-- 子:$emit(eventName, args)   父:$on(eventName, callback) -->
+        <button @click="sendMsgToParent">向父组件传值</button>
     </div>
 </template>
 
@@ -36,6 +40,11 @@ export default {
                 // 这个值必须匹配下列字符串中的一个
                 return ['success', 'warning', 'danger'].indexOf(value) !== -1
             }
+        }
+    },
+    methods: {
+        sendMsgToParent () {
+            this.$emit('listenToChildEvent', 'this message is from child')
         }
     }
 }
