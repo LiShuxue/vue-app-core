@@ -12,12 +12,16 @@
         <!-- camelCase vs kebab-case。如果在template中，两种写法都可以。但是如果在html中，特性名是大小写不敏感的，所以浏览器会把所有大写字符解释为小写字符 -->
         <!-- 子组件传递到父组件的消息，需要在子组件的上监听，而不是任意一个template上都可以监听到 -->
         <prop-test propA="静态字符串" :propB="msg" :prop-c="msg" propE="success" @listenToChildEvent="showMsgFromChild"></prop-test>
+
+        <!-- 通过vuex管理应用的状态 -->
+        <vuex-test></vuex-test>
     </div>
 </template>
 
 <script>
 import computer from '@/components/computer'
 import propTest from '@/components/propTest'
+import vuexTest from '@/components/vuexTest'
 export default {
     data () {
         return {
@@ -26,7 +30,8 @@ export default {
     },
     components: {
         computer,
-        propTest
+        propTest,
+        vuexTest
     },
     methods: {
         showMsgFromChild (args) {
