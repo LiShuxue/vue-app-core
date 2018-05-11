@@ -14,11 +14,20 @@
         <!-- 父子通讯，props down, events up。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息 -->
         <!-- 子:$emit(eventName, args)   父:$on(eventName, callback) -->
         <button @click="sendMsgToParent">向父组件传值</button>
+
+        <!-- 不借用vuex的情况下，兄弟组件通过event bus来传递消息 -->
+        <div>{{msgFromBrother}}</div>
     </div>
 </template>
 
 <script>
+import eventBus from '@/components/eventBus'
 export default {
+    data () {
+        return {
+            msgFromBrother: '接受兄弟组件传来的信息'
+        }
+    },
     props: {
         // 基础的类型检查 (`null` 匹配任何类型)
         propA: String,
@@ -46,6 +55,12 @@ export default {
         sendMsgToParent () {
             this.$emit('listenToChildEvent', 'this message is from child')
         }
+    },
+    created () {
+        eventBus.$on('listenToBrother', (args) => {
+            console.log(args)
+            this.msgFromBrother = args
+        })
     }
 }
 </script>

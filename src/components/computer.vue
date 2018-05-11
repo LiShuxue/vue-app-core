@@ -7,11 +7,24 @@
         <slot name="GPU"></slot>
         <slot name="Memory"></slot>
         <div>上面的硬件可以组成一台电脑</div>
+
+        <!-- 非父子组件通讯
+            1. 子传父，再父传子
+            2. 使用一个空的Vue实例作为单独的事件中心管理组件间的通信
+            3. 使用vuex
+        -->
+        <button @click="sendMsgToBrother">向兄弟组件传递信息</button>
     </div>
 </template>
 
 <script>
+import eventBus from '@/components/eventBus'
 export default {
+    methods: {
+        sendMsgToBrother () {
+            eventBus.$emit('listenToBrother', 'this message is from brother')
+        }
+    }
 }
 </script>
 
