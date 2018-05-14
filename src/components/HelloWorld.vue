@@ -15,6 +15,9 @@
 
         <!-- 通过vuex管理应用的状态 -->
         <vuex-test></vuex-test>
+
+        <!-- 组件的生命周期 -->
+        <life-cycle></life-cycle>
     </div>
 </template>
 
@@ -22,6 +25,7 @@
 import computer from '@/components/computer'
 import propTest from '@/components/propTest'
 import vuexTest from '@/components/vuexTest'
+import lifeCycle from '@/components/lifeCycle'
 export default {
     data () {
         return {
@@ -31,7 +35,8 @@ export default {
     components: {
         computer,
         propTest,
-        vuexTest
+        vuexTest,
+        lifeCycle
     },
     methods: {
         showMsgFromChild (args) {
