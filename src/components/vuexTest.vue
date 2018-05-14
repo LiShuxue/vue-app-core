@@ -8,23 +8,24 @@
         <!-- 使用Vuex的各种map方法后 -->
         <div>将store中的state map成该组件中的计算属性: {{testState}}</div>
         <div>将store中的getter map成该组件中的计算属性: {{testGetter}}</div>
+        <div><button @click="TEST_MUTATION_CHANGE_STATE({ newState: 'this is testMapMutations' })">将store中的mutation map成该组件中的方法</button></div>
     </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
     computed: {
         // 通过mapState可以帮助我们生成计算属性。将store中的某个state映射到我们当前组件的某个计算属性上。
         // 如果当前计算属性与state中的名字不同：...mapState({ 'mapS': state=>state.testState })，用的是大括号{}
-        // 如果当前计算属性与state中的名字相同：...mapState([ 'testState' ])，用的是中括号[]。推荐使用这种
+        // 如果当前计算属性与state中的名字相同：...mapState([ 'testState' ])，用的是中括号[]。
         ...mapState([
             'testState'
         ]),
 
         // mapGetters 可以将 store 中的 getter 映射到计算属性
         // 如果当前计算属性与getter的名字不同：...mapGetters({ mapG: 'testGetter' })，用的是大括号{}
-        // 如果当前计算属性与getter的名字相同：...mapGetters([ 'testGetter' ])，用的是中括号[]。推荐使用这种
+        // 如果当前计算属性与getter的名字相同：...mapGetters([ 'testGetter' ])，用的是中括号[]。
         ...mapGetters([
             'testGetter'
         ])
@@ -33,7 +34,16 @@ export default {
         changeStore () {
             // Action 通过 store.dispatch 方法触发
             this.$store.dispatch('testActionChangeState')
-        }
+        },
+
+        // 使用 mapMutations 将组件中的 methods 映射为 this.$store.commit('xxx', { payload })。更改store中的state的值只能提交mutations。
+        // 如果当前方法名与mutation的名字不同：...mapMutations({ mapM: 'TEST_MUTATION_CHANGE_STATE' })，用的是大括号{}
+        // 如果当前方法名与mutation的名字相同：...mapMutations([ 'TEST_MUTATION_CHANGE_STATE' ])，用的是中括号[]。
+        // 调用方法的时候可以直接传入参数，相当于payload
+        ...mapMutations([
+            'TEST_MUTATION_CHANGE_STATE'
+        ])
+
     }
 }
 </script>
