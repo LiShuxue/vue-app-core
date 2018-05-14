@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <p>this is app.vue</p>
+        <h1>this is app.vue</h1>
 
         <!-- <router-view> 是基本的动态组件，所以我们可以用 <transition> 组件给它添加一些过渡效果。 下面的用法会给所有路由设置一样的过渡效果。 -->
         <!-- 在进入/离开的过渡中，会有 6 个 class 切换:
@@ -38,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.home{
+    border: 1px red solid;
+    padding: 10px;
+}
 .router-fade-enter{
     opacity: 0;
 }

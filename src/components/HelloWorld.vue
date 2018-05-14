@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-        this is HelloWorld.vue
+        <h3>this is HelloWorld.vue</h3>
         <computer>
             <!-- slot可以将不同的内容渲染到组件的不同地方，这些内容也可以是原生的html -->
             <div slot="CPU">Intel Core i7</div>
@@ -47,5 +47,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.hello{
+    border: 1px green solid;
+    padding: 10px;
+}
 </style>
