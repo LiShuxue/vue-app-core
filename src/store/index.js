@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as types from '@/store/mutation-types'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,8 @@ const getters = {
 // 更改 store 中的状态的唯一方法是提交 mutation
 // mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数
 const mutations = {
-    testMutationChangeState (state, payload) {
+    // ES6中属性命名也可以用 []，里面是表达式
+    [types.TEST_MUTATION_CHANGE_STATE] (state, payload) {
         state.testState = payload.newState
     }
 }
@@ -34,7 +36,7 @@ const actions = {
 
     // 解构context
     testActionChangeState ({ commit }) {
-        commit('testMutationChangeState', {
+        commit(types.TEST_MUTATION_CHANGE_STATE, {
             newState: 'this is new state'
         })
     }
