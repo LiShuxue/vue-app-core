@@ -1,5 +1,6 @@
 <template>
     <div class="computer">
+        <h5>this is computer.vue</h5>
         <!-- slot: 插槽，内容分发 -->
         <!-- 在父组件中放入已被 `slot` 标记的内容，这些内容的顺序可以随意。之后这些内容被分发到子组件的特殊元素 `slot` 中，根据 `name` 属性在子组件中重新组合。 -->
         <!-- 先在组件中定义好一些插槽，在使用此组件的时候可以指定插槽去渲染不同的内容 -->
@@ -29,4 +30,8 @@ export default {
 </script>
 
 <style scoped>
+.computer{
+    border: 1px blue solid;
+    margin: 10px 0 0 0;
+}
 </style>
