@@ -34,10 +34,10 @@ const actions = {
     //     })
     // }
 
-    // 解构context
-    testActionChangeState ({ commit }) {
+    // 解构context为{ commit }，也可以传入payload
+    testActionChangeState ({ commit }, payload) {
         commit(types.TEST_MUTATION_CHANGE_STATE, {
-            newState: 'this is new state'
+            newState: payload.newState
         })
     }
 }
