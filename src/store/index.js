@@ -35,10 +35,13 @@ const actions = {
     // }
 
     // 解构context为{ commit }，也可以传入payload
+    // 为什么不直接提交 mutations ? 因为 mutation 必须同步执行。而在 action 内部可以执行异步操作
     testActionChangeState ({ commit }, payload) {
-        commit(types.TEST_MUTATION_CHANGE_STATE, {
-            newState: payload.newState
-        })
+        setTimeout(() => {
+            commit(types.TEST_MUTATION_CHANGE_STATE, {
+                newState: payload.newState
+            })
+        }, 1000)
     }
 }
 
