@@ -35,17 +35,47 @@
             <div v-else-if="type === 'C'">C</div>
             <div v-else>Not A/B/C</div>
         </div>
+
+        <!-- 列表渲染 -->
+        <div>
+            <!-- 循环一个数组，v-for="item in list"， 也可以接受第二个参数作为当前项的索引 v-for="(item, index) in list" -->
+            <!-- 也可以用 of 替代 in 作为分隔符 v-for="item of list" -->
+            <!-- 使用v-for循环的时候最好绑定上key属性，理想的 key 值是每项都有的且唯一的 id。key的作用主要是为了高效的更新虚拟DOM，另外vue中在使用相同标签名元素的过渡切换时，也会使用到key属性，其目的也是为了让vue可以区分它们，否则vue只会替换其内部属性而不会触发过渡效果。 -->
+            <ul>
+                <li v-for="(item, index) in testList" :key="index">
+                    {{ item }} - {{ index }} - {{ item.msg }}
+                </li>
+            </ul>
+
+            <!-- 循环一个对象的key和value。可以接受一个参数value或者两个参数(value, key)或者三个参数(value, key, index) -->
+            <ul>
+                <li v-for="(value, key, index) in testObj" :key="key">
+                    {{ key }} - {{ value }} - {{index}}
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
+    // 不使用return包裹的数据会在项目的全局可见，会造成变量污染，使用return包裹后数据中变量只在当前组件中生效，不会影响其他组件。
     data () {
         return {
             isActive: true,
             className1: 'active',
             className2: 'test1',
-            showSomething: true
+            showSomething: true,
+            testList: [
+                { msg: 'first' },
+                { msg: 'second' },
+                { msg: 'third' }
+            ],
+            testObj: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30
+            }
         }
     },
     computed: {
