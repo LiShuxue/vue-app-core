@@ -18,6 +18,9 @@
 
         <!-- 组件的生命周期 -->
         <life-cycle></life-cycle>
+
+        <!-- 模板上的一些语法和使用 -->
+        <template-function></template-function>
     </div>
 </template>
 
@@ -26,6 +29,7 @@ import computer from '@/components/computer'
 import propTest from '@/components/propTest'
 import vuexTest from '@/components/vuexTest'
 import lifeCycle from '@/components/lifeCycle'
+import templateFunction from '@/components/templateFunction'
 export default {
     data () {
         return {
@@ -36,7 +40,8 @@ export default {
         computer,
         propTest,
         vuexTest,
-        lifeCycle
+        lifeCycle,
+        templateFunction
     },
     methods: {
         showMsgFromChild (args) {
