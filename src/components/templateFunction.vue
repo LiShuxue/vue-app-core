@@ -17,6 +17,24 @@
             <!-- 数组语法+对象语法， 数组语法中也可以包含对象语法-->
             <p v-bind:class="[{active: isActive}, className2]">通过数组语法+对象语法绑定class</p>
         </div>
+
+        <!-- 条件渲染 -->
+        <!-- v-else，v-else-if 必须紧跟在带 v-if 或者 v-else-if 的元素之后。-->
+        <!-- v-if vs v-show   v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好 -->
+        <div>
+            <!-- 单独一个v-if -->
+            <div v-if="showSomething">如果真，则显示</div>
+
+            <!-- v-if, v-else结合 -->
+            <div v-if="Math.random() > 0.5">Now you see me</div>
+            <div v-else>Now you don't</div>
+
+            <!-- v-if, v-else-if, v-else结合 -->
+            <div v-if="type === 'A'">A</div>
+            <div v-else-if="type === 'B'">B</div>
+            <div v-else-if="type === 'C'">C</div>
+            <div v-else>Not A/B/C</div>
+        </div>
     </div>
 </template>
 
@@ -26,7 +44,8 @@ export default {
         return {
             isActive: true,
             className1: 'active',
-            className2: 'test1'
+            className2: 'test1',
+            showSomething: true
         }
     },
     computed: {
