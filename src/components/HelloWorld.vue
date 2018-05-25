@@ -21,6 +21,9 @@
 
         <!-- 模板上的一些语法和使用 -->
         <template-function></template-function>
+
+        <!-- 异步编程 -->
+        <async></async>
     </div>
 </template>
 
@@ -30,6 +33,7 @@ import propTest from '@/components/propTest'
 import vuexTest from '@/components/vuexTest'
 import lifeCycle from '@/components/lifeCycle'
 import templateFunction from '@/components/templateFunction'
+import async from '@/components/async'
 export default {
     data () {
         return {
@@ -41,7 +45,8 @@ export default {
         propTest,
         vuexTest,
         lifeCycle,
-        templateFunction
+        templateFunction,
+        async
     },
     methods: {
         showMsgFromChild (args) {
