@@ -66,6 +66,7 @@ export default {
             className1: 'active',
             className2: 'test1',
             showSomething: true,
+            type: 'D',
             testList: [
                 { msg: 'first' },
                 { msg: 'second' },

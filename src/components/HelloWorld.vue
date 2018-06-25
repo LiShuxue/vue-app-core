@@ -24,6 +24,9 @@
 
         <!-- 异步编程 -->
         <async></async>
+
+        <!-- chart图表 -->
+        <chart></chart>
     </div>
 </template>
 
@@ -34,6 +37,7 @@ import vuexTest from '@/components/vuexTest'
 import lifeCycle from '@/components/lifeCycle'
 import templateFunction from '@/components/templateFunction'
 import async from '@/components/async'
+import chart from '@/components/chart'
 export default {
     data () {
         return {
@@ -46,7 +50,8 @@ export default {
         vuexTest,
         lifeCycle,
         templateFunction,
-        async
+        async,
+        chart
     },
     methods: {
         showMsgFromChild (args) {
