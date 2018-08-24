@@ -27,6 +27,9 @@
 
         <!-- chart图表 -->
         <chart></chart>
+
+        <!-- 富文本编辑器 -->
+        <editor></editor>
     </div>
 </template>
 
@@ -38,6 +41,7 @@ import lifeCycle from '@/components/lifeCycle'
 import templateFunction from '@/components/templateFunction'
 import async from '@/components/async'
 import chart from '@/components/chart'
+import editor from '@/components/editor'
 export default {
     data () {
         return {
@@ -51,7 +55,8 @@ export default {
         lifeCycle,
         templateFunction,
         async,
-        chart
+        chart,
+        editor
     },
     methods: {
         showMsgFromChild (args) {
