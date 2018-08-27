@@ -30,6 +30,9 @@
 
         <!-- 富文本编辑器 -->
         <editor></editor>
+
+        <!-- markdown编辑器 -->
+        <editor-b></editor-b>
     </div>
 </template>
 
@@ -42,6 +45,7 @@ import templateFunction from '@/components/templateFunction'
 import async from '@/components/async'
 import chart from '@/components/chart'
 import editor from '@/components/editor'
+import editorB from '@/components/editorB'
 export default {
     data () {
         return {
@@ -56,7 +60,8 @@ export default {
         templateFunction,
         async,
         chart,
-        editor
+        editor,
+        editorB
     },
     methods: {
         showMsgFromChild (args) {
