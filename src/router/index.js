@@ -7,6 +7,8 @@ import App from '@/App'
 // require.ensure(dependencies: String[], callback: function(require), chunkName: String)
 const Hello = r => require.ensure([], () => r(require('@/components/HelloWorld')), 'hello')
 const pageA = r => require.ensure([], () => r(require('@/page/pageA')), 'pageA')
+const scroll1 = r => require.ensure([], () => r(require('@/page/scroll1')), 'scroll1')
+const scroll2 = r => require.ensure([], () => r(require('@/page/scroll2')), 'scroll2')
 
 Vue.use(Router)
 
@@ -17,7 +19,9 @@ export default new Router({
             component: App,
             children: [
                 { path: '/hello', component: Hello },
-                { path: '/pageA', component: pageA, meta: { keepAlive: true } } // 需要缓存
+                { path: '/pageA', component: pageA, meta: { keepAlive: true } }, // 需要缓存
+                { path: '/scroll1', component: scroll1 },
+                { path: '/scroll2', component: scroll2 }
             ]
         }
     ]
