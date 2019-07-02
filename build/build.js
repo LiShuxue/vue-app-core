@@ -1,24 +1,26 @@
 'use strict'
-require('./check-versions')()
+require('./check-versions')() // check node 和 npm 的版本号
 
 process.env.NODE_ENV = 'production'
 
-const ora = require('ora')
-const rm = require('rimraf')
+const ora = require('ora') // 控制台显示loading效果的插件
+const rm = require('rimraf') // The UNIX command rm -rf for node. 并提供回调函数
 const path = require('path')
-const chalk = require('chalk')
+const chalk = require('chalk') // 可以给输出信息，添加背景，改变字体颜色等
 const webpack = require('webpack')
 const config = require('../config')
 const webpackConfig = require('./webpack.prod.conf')
 
 const spinner = ora('building for production...')
-spinner.start()
+spinner.start() // 开始loading
 
+//先删除dist文件再去重新build
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
-  webpack(webpackConfig, (err, stats) => {
+  webpack(webpackConfig, (err, stats) => { // stats，是webpack打包的一个状态
     spinner.stop()
     if (err) throw err
+    // process.stdout 输出流
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,

@@ -7,12 +7,15 @@ const sourceMapEnabled = isProduction
   : config.dev.cssSourceMap
 
 module.exports = {
+  // 加载一系列的css, sass, less....loader
   loaders: utils.cssLoaders({
     sourceMap: sourceMapEnabled,
     extract: isProduction
   }),
   cssSourceMap: sourceMapEnabled,
+  // 是否破坏缓存，使缓存失效
   cacheBusting: config.dev.cacheBusting,
+  // 在模版编译过程中，编译器可以将某些属性，如 src 路径，转换为require调用，以便目标资源可以由 webpack 处理
   transformToRequire: {
     video: ['src', 'poster'],
     source: 'src',
