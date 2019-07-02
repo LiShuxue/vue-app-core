@@ -2,6 +2,7 @@
 const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// 引入package.json文件，之后就可以使用其中的内容
 const packageConfig = require('../package.json')
 
 exports.assetsPath = function (_path) {
@@ -46,8 +47,8 @@ exports.cssLoaders = function (options) {
     // (which is the case during production build)
     if (options.extract) {
       return ExtractTextPlugin.extract({
-        use: loaders,
-        fallback: 'vue-style-loader'
+        use: loaders,  // 指需要什么样的loader去编译文件
+        fallback: 'vue-style-loader' // 编译后用vue-style-loader来提取css文件
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
@@ -56,13 +57,13 @@ exports.cssLoaders = function (options) {
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
-    css: generateLoaders(),
-    postcss: generateLoaders(),
-    less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
-    stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
+    css: generateLoaders(), // 需要css-loader 和 vue-style-loader
+    postcss: generateLoaders(), // 需要 css-loader 和 postcssLoader 和 vue-style-loader
+    less: generateLoaders('less'), // 需要 less-loader 和 vue-style-loader
+    sass: generateLoaders('sass', { indentedSyntax: true }), // 需要 sass-loader 和 vue-style-loader
+    scss: generateLoaders('sass'), // 需要 sass-loader 和 vue-style-loader
+    stylus: generateLoaders('stylus'), // 需要 stylus-loader 和 vue-style-loader
+    styl: generateLoaders('stylus') // 需要 stylus-loader 和 vue-style-loader
   }
 }
 
@@ -71,6 +72,7 @@ exports.styleLoaders = function (options) {
   const output = []
   const loaders = exports.cssLoaders(options)
 
+  // 将各种css,less,sass等综合在一起得出结果输出output
   for (const extension in loaders) {
     const loader = loaders[extension]
     output.push({
@@ -83,6 +85,7 @@ exports.styleLoaders = function (options) {
 }
 
 exports.createNotifierCallback = () => {
+  // node-notifier来显示系统通知
   const notifier = require('node-notifier')
 
   return (severity, errors) => {
@@ -91,6 +94,7 @@ exports.createNotifierCallback = () => {
     const error = errors[0]
     const filename = error.file && error.file.split('!').pop()
 
+    // 当报错时输出错误信息的标题，错误信息详情，副标题以及图标
     notifier.notify({
       title: packageConfig.name,
       message: severity + ': ' + error.name,
