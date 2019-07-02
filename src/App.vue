@@ -33,7 +33,25 @@
 </template>
 
 <script>
+import myMixin from '@/mixins/myMixin'
+
 export default {
+    mixins: [myMixin],
+    data () {
+        return {
+            test: '这是原始的data'
+        }
+    },
+    created () {
+        console.log('这是本身的生命周期函数')
+        this.testMethod()
+    },
+    methods: {
+        testMethod () {
+            console.log('这是原始的方法')
+            console.log(this.test)
+        }
+    }
 }
 </script>
 
