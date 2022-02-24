@@ -35,6 +35,9 @@ export default {
     beforeCreate () {
         console.log('beforeCreate:在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用，所以此时操作data对象不生效。')
         this.beforeCreate = 'beforeCreate:在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用，所以此时操作data对象不生效。'
+        console.log(this) // 可以获取this
+        console.log(this.data) // 不能获取data 和 methods
+        console.log(this.$options.data()) // 可以这样获取data
     },
     created () {
         console.log('created:在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。')
